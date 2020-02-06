@@ -1,4 +1,5 @@
 defmodule ID3Parser do
+  :debugger.start()
   # Read the MP3 file
   def parse(file_name) do
     case File.read(file_name) do

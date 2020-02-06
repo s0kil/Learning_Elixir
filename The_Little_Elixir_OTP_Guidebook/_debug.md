@@ -10,3 +10,7 @@ require IEx
 # Then ...
 IEx.pry # macro
 ```
+
+TODO
+`:debugger.*`?
+`:observer.*`?
