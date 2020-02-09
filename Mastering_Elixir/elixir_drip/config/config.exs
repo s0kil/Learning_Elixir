@@ -9,6 +9,21 @@
 # move said applications out of the umbrella.
 import Config
 
+config :elixir_drip_web,
+  ecto_repos: [ElixirDripWeb.Repo],
+  generators: [context_app: false]
+
+# Configures the endpoint
+config :elixir_drip_web, ElixirDripWeb.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "GuzSyXDciQ20zBMMwpGRF9WhrBWG1z0/8syXFQMg3yal0WZDEcl+hh7CG2tnNZXE",
+  render_errors: [view: ElixirDripWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: ElixirDripWeb.PubSub, adapter: Phoenix.PubSub.PG2]
+
+# Configure Mix tasks and generators
+config :elixir_drip,
+  ecto_repos: [ElixirDrip.Repo]
+
 # Sample configuration:
 #
 #     config :logger, :console,
@@ -16,3 +31,15 @@ import Config
 #       format: "$date $time [$level] $metadata$message\n",
 #       metadata: [:user_id]
 #
+
+# Configures Elixir's Logger
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env()}.exs"
